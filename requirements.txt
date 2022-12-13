@@ -1,0 +1,10 @@
+Django==3.2.13
+django-cors-headers==3.7.0
+django-filter==21.1
+djangorestframework==3.12.4
+requests==2.27.1
+uWSGI==2.0.20
+Pillow==9.1.0
+psycopg2==2.8.6
+python-dateutil==2.8.2
+pytz==2022.1
