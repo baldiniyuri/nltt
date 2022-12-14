@@ -90,7 +90,7 @@ Post Multipart Form
 HEADERS {Authentication Token tokenhash}
 {
 	"user_id": 1,
-	"image": "123456",
+	"image": "imagefile",
 }
 // RESPONSE STATUS -> HTTP 201
 ```
