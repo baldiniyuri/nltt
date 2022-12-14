@@ -15,6 +15,7 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - THROTTLE_ANON=${THROTTLE_ANON}
       - THROTTLE_USER=${THROTTLE_USER}
+      - RESIZE_URL={RESIZE_URL}
     depends_on:
       - db
 

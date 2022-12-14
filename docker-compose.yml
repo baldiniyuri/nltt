@@ -20,6 +20,7 @@ services:
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
       - THROTTLE_ANON=${THROTTLE_ANON}
       - THROTTLE_USER=${THROTTLE_USER}
+      - RESIZE_URL={RESIZE_URL}
     depends_on:
       - db
 

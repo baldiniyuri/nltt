@@ -8,10 +8,8 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from images.models import Images
 from images.serializers import ImageSerializers
 from authentication.models import User
-import requests
+from images.requests import Send_Image_For_Resize
 
-
-URL = 'http://127.0.0.1:8100/api/images-to-resize/'
 
 class ImagesView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -34,11 +32,13 @@ class ImagesView(APIView):
         user = User.objects.get(id=user_id)
 
         image = Images.objects.create(user=user, image=request.data['image'])
+        image_id = image.id
 
-        data = {"user_id_from_request" : user_id,"image_id_from_request": image.id, "image_to_resize": request.data['image']}
-        
-        requests.post(URL, data)
+        response = Send_Image_For_Resize(request, image_id)
 
+        if not response:
+            return Response({"Detail":"Image was not sent to Resize application."},status=status.HTTP_201_CREATED)
+            
         return Response( status=status.HTTP_201_CREATED)
 
 
