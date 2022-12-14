@@ -46,4 +46,21 @@ class ImagesView(APIView):
 
         return Response(serializers.data, status=status.HTTP_200_OK)
 
+
+    def put(self, request):
+        found_image = Images.objects.filter(id=request.data['image_id'], user_id=request.data['user_id'])
+
+        if not found_image or not Find_User(user_id=request.data['user_id']):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        user = User.objects.get(id=request.data['user_id'])
+        
+        new_image = Images.objects.get(id=request.data['image_id'], user=user)
+        new_image.image = request.data['image']
+        new_image.save()
+
+        serializers = ImageSerializers(new_image)
+
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
      
